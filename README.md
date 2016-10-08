@@ -25,8 +25,7 @@ This packages works for Laravel versions 5.* only.
      PercyMamedy\LaravelDevBooter\ServiceProvider::class,
  ],
  ```
- 
- ### Configuration and Usage
+ ### Configuration & Usage
  
  Once installed you can now publish your config file and set your correct configuration for using the package.
  
