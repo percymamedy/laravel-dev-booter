@@ -1,7 +1,7 @@
 <?php
 
 return [
-    
+
     /*
     |--------------------------------------------------------------------------
     | Development Environments
@@ -12,13 +12,13 @@ return [
     | needs to be registered or not. Go crazy here.
     |
     */
-    
+
     'dev_environments' => [
         'local',
         'dev',
-        'testing'
+        'testing',
     ],
-    
+
     /*
     |--------------------------------------------------------------------------
     | Development Providers config key
@@ -29,6 +29,6 @@ return [
     | to change this value if you want to.
     |
     */
-    
-    'dev_providers_config_key' => 'app.dev_providers'
+
+    'dev_providers_config_key' => 'app.dev_providers',
 ];

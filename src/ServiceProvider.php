@@ -15,10 +15,10 @@ class ServiceProvider extends BaseServiceProvider
     {
         // Publish all config files.
         $this->publishes([
-            __DIR__ . '/config/dev-booter.php' => config_path('dev-booter.php')
+            __DIR__ . '/config/dev-booter.php' => config_path('dev-booter.php'),
         ], 'config');
     }
-    
+
     /**
      * Register the application services.
      *
@@ -30,11 +30,11 @@ class ServiceProvider extends BaseServiceProvider
         $this->mergeConfigFrom(
             __DIR__ . '/config/dev-booter.php', 'dev-booter'
         );
-        
+
         // Register all dev providers.
         $this->registerDevProviders();
     }
-    
+
     /**
      * Register all dev providers.
      *
@@ -50,7 +50,7 @@ class ServiceProvider extends BaseServiceProvider
             });
         }
     }
-    
+
     /**
      * Checks if we must register dev providers.
      *
@@ -60,7 +60,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         return in_array($this->app->environment(), config('dev-booter.dev_environments'));
     }
-    
+
     /**
      * Return list of Dev providers.
      *
