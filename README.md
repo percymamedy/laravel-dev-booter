@@ -11,66 +11,54 @@ development environments.
 
 This packages works for Laravel versions 5.* only.
  
- First install the package using your main ally: composer
+First install the package using your main ally: composer
  
- ```
+```
  composer require percymamedy/laravel-dev-booter
- ```
+```
+Add the Service Provider to your providers array in ```config/app.php```
  
- Add the Service Provider to your providers array in ```config/app.php```
- 
- ```php
+```php
  'providers' => [
      ...
      PercyMamedy\LaravelDevBooter\ServiceProvider::class,
  ],
- ```
+```
+
+### Configuration and usage
+
+Once installed you can now publish your config file and set your correct configuration for using the package.
  
- ### Configuration and usage
+```php
+php artisan vendor:publish --provider="PercyMamedy\LaravelDevBooter\ServiceProvider" --tag="config"
+```
  
- Once installed you can now publish your config file and set your correct configuration for using the package.
+This will create a file ```config/dev-booter.php```.
  
- ```php
- php artisan vendor:publish --provider="PercyMamedy\LaravelDevBooter\ServiceProvider" --tag="config"
- ```
+You may now set your development environments in ```config/dev-booter.php```
  
- This will create a file ```config/dev-booter.php```.
- 
- You may now set your development environments in ```config/dev-booter.php```
- 
- ```php
+```php
  'dev_environments' => [
     'local',
     'dev',
     'testing'
-],
- ```
+ ],
+```
  
- You can also set where you want your dev ServiceProviders to be loaded from.
+You can also set where you want your dev ServiceProviders to be loaded from.
  
- ```php
+```php
  'dev_providers_config_key' => 'app.dev_providers'
- ```
+```
  
- Now all you need is to set your Dev ServiceProviders in ```config/app.php``` as you would for regular
- ServiceProviders. Except that now there is a clean separation of the two and unwanted ServiceProviders will
- not be loaded or registered in your production environment.
+Now all you need is to set your Dev ServiceProviders in ```config/app.php``` as you would for regular
+ServiceProviders. Except that now there is a clean separation of the two and unwanted ServiceProviders will
+not be loaded or registered in your production environment.
  
- ```php
+```php
  'dev_providers' => [
- ...
+  ...
  ]
- ```
- 
-### Credits
-
-[![Percy Mamedy](https://img.shields.io/badge/Author-Percy%20Mamedy-orange.svg)](https://twitter.com/PercyMamedy)
-
-Twitter: [@PercyMamedy](https://twitter.com/PercyMamedy)
-<br/>
-GitHub: [percymamedy](https://github.com/percymamedy)
- 
- 
- 
+```
  
  
