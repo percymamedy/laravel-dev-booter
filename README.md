@@ -17,7 +17,7 @@ This packages works for Laravel versions 5.* only.
  composer require percymamedy/laravel-dev-booter
  ```
  
- Add the Service Provider to your providers array in config/app.php
+ Add the Service Provider to your providers array in ```config/app.php```
  
  ```php
  'providers' => [
@@ -25,7 +25,8 @@ This packages works for Laravel versions 5.* only.
      PercyMamedy\LaravelDevBooter\ServiceProvider::class,
  ],
  ```
- ### Configuration & Usage
+ 
+ ### Configuration and usage
  
  Once installed you can now publish your config file and set your correct configuration for using the package.
  
