@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.org/percymamedy/laravel-dev-booter.svg?branch=master)](https://travis-ci.org/percymamedy/laravel-dev-booter)
 [![StyleCI](https://styleci.io/repos/70182697/shield?branch=master)](https://styleci.io/repos/70182697)
+[![Latest Stable Version](https://poser.pugx.org/percymamedy/laravel-dev-booter/v/stable)](https://packagist.org/packages/percymamedy/laravel-dev-booter)
+[![Total Downloads](https://poser.pugx.org/percymamedy/laravel-dev-booter/downloads)](https://packagist.org/packages/percymamedy/laravel-dev-booter)
+[![Latest Unstable Version](https://poser.pugx.org/percymamedy/laravel-dev-booter/v/unstable)](https://packagist.org/packages/percymamedy/laravel-dev-booter)
+[![License](https://poser.pugx.org/percymamedy/laravel-dev-booter/license)](https://packagist.org/packages/percymamedy/laravel-dev-booter)
 
 So many times we find ourselves registering Service Providers that are 
 only needed during development in the providers array. This could slow down 
