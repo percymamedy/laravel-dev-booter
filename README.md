@@ -26,7 +26,7 @@ This packages works for Laravel versions 5.* only.
  ],
  ```
  
- ### Configuration & Usage
+ ### Configuration and Usage
  
  Once installed you can now publish your config file and set your correct configuration for using the package.
  
