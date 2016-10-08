@@ -1,5 +1,8 @@
 ## Laravel 5 dev booter
 
+[![Build Status](https://travis-ci.org/percymamedy/laravel-dev-booter.svg?branch=master)](https://travis-ci.org/percymamedy/laravel-dev-booter)
+[![StyleCI](https://styleci.io/repos/70182697/shield?branch=master)](https://styleci.io/repos/70182697)
+
 So many times we find ourselves registering Service Providers that are 
 only needed during development in the providers array. This could slow down 
 our application by registering providers that we do not need in production.
