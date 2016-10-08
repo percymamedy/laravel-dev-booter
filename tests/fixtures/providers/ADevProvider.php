@@ -14,7 +14,7 @@ class ADevProvider extends ServiceProvider
     public function boot()
     {
     }
-    
+
     /**
      * Register Application Services.
      *
