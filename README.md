@@ -11,20 +11,21 @@ development environments.
 
 This packages works for Laravel versions 5.* only.
  
-First install the package using your main ally: composer
+ First install the package using your main ally: composer
  
-```
+ ```
  composer require percymamedy/laravel-dev-booter
-```
-Add the Service Provider to your providers array in ```config/app.php```
+ ```
  
-```php
+ Add the Service Provider to your providers array in ```config/app.php```
+ 
+ ```php
  'providers' => [
      ...
      PercyMamedy\LaravelDevBooter\ServiceProvider::class,
  ],
-```
-
+ ```
+ 
 ### Configuration and usage
 
 Once installed you can now publish your config file and set your correct configuration for using the package.
@@ -60,5 +61,16 @@ not be loaded or registered in your production environment.
   ...
  ]
 ```
+
+### Credits
+
+[![Percy Mamedy](https://img.shields.io/badge/Author-Percy%20Mamedy-orange.svg)](https://twitter.com/PercyMamedy)
+
+Twitter: [@PercyMamedy](https://twitter.com/PercyMamedy)
+<br/>
+GitHub: [percymamedy](https://github.com/percymamedy)
+ 
+ 
+ 
  
  
