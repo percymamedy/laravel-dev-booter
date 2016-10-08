@@ -21,6 +21,11 @@
             "PercyMamedy\\LaravelDevBooter\\" : "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "TestsFixtures\\": "tests/fixtures/"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "0.1.x-dev"

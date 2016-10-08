@@ -15,7 +15,8 @@ return [
     
     'dev_environments' => [
         'local',
-        'dev'
+        'dev',
+        'testing'
     ],
     
     /*

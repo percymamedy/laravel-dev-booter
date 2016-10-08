@@ -66,14 +66,4 @@ class ServiceProviderTest extends TestCase
             unlink(config_path('dev-booter.php'));
         }
     }
-    
-    /**
-     * Test that dev providers are registred when on dev env.
-     *
-     * @return void
-     */
-    public function testThatDevProvidersAreRegisteredCorrectly()
-    {
-        
-    }
 }
