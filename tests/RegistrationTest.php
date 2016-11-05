@@ -1,9 +1,10 @@
 <?php
 
-use Orchestra\Testbench\TestCase;
-use PercyMamedy\LaravelDevBooter\ServiceProvider;
-use TestsFixtures\Providers\ADevProvider;
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Facade;
+use Orchestra\Testbench\TestCase;
+use PercyMamedy\LaravelDevBooter\ServiceProvider as DevBooterProvider;
+use TestsFixtures\Providers\ADevProvider;
 
 class RegistrationTest extends TestCase
 {
@@ -37,9 +38,14 @@ class RegistrationTest extends TestCase
     public function getPackageProviders($app)
     {
         config(['app.dev_providers' => [ADevProvider::class]]);
+        config([
+            'app.dev_aliases' => [
+                'Bar' => \TestsFixtures\Facades\ADevFacade::class,
+            ],
+        ]);
 
         return [
-            ServiceProvider::class,
+            DevBooterProvider::class,
         ];
     }
 
@@ -108,6 +114,20 @@ class RegistrationTest extends TestCase
                 'TestsFixtures\Providers\ADevProvider',
                 $app->getLoadedProviders()
             )
+        );
+    }
+
+    /**
+     * Test that dev class aliases are properly booter.
+     *
+     * @return void
+     */
+    public function testThatClassAliasesAreBootedCorrectly()
+    {
+        $app = $this->createApplication('dev');
+
+        $this->assertTrue(
+            array_key_exists('Bar', AliasLoader::getInstance()->getAliases())
         );
     }
 

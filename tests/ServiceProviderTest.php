@@ -1,6 +1,7 @@
 <?php
 
 use Orchestra\Testbench\TestCase;
+use PercyMamedy\LaravelDevBooter\ServiceProvider as DevBooterProvider;
 
 class ServiceProviderTest extends TestCase
 {
@@ -33,7 +34,7 @@ class ServiceProviderTest extends TestCase
      */
     public function getPackageProviders($app)
     {
-        return [\PercyMamedy\LaravelDevBooter\ServiceProvider::class];
+        return [DevBooterProvider::class];
     }
 
     /**
@@ -46,6 +47,7 @@ class ServiceProviderTest extends TestCase
     public function testConfigCanGetValues()
     {
         $this->assertEquals('app.dev_providers', config('dev-booter.dev_providers_config_key'));
+        $this->assertEquals('app.dev_aliases', config('dev-booter.dev_aliases_config_key'));
     }
 
     /**
