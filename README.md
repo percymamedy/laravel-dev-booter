@@ -48,17 +48,23 @@ This will create a file ```config/dev-booter.php```.
 You may now set your development environments in ```config/dev-booter.php```
  
 ```php
- 'dev_environments' => [
+'dev_environments' => [
     'local',
     'dev',
     'testing'
- ],
+],
 ```
  
 You can also set where you want your dev ServiceProviders to be loaded from.
  
 ```php
- 'dev_providers_config_key' => 'app.dev_providers'
+'dev_providers_config_key' => 'app.dev_providers'
+```
+
+You can also specify where you want to place your dev class aliases.
+
+```php
+'dev_aliases_config_key' => 'app.dev_aliases'
 ```
  
 Now all you need is to set your Dev ServiceProviders in ```config/app.php``` as you would for regular
@@ -66,10 +72,21 @@ ServiceProviders. Except that now there is a clean separation of the two and unw
 not be loaded or registered in your production environment.
  
 ```php
- 'dev_providers' => [
+'dev_providers' => [
   ...
- ]
+]
 ```
+
+You may also boot class aliases that may only be used on dev enviroment. You only need to add to your ```config/app.php``` 
+the key ```'dev_aliases'``` and place all your dev class aliases there. Now those aliases or facades will only
+be booted on development.
+
+```php
+'dev_aliases' => [
+  ...
+]
+```
+
 
 ### Credits
 
