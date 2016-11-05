@@ -17,7 +17,7 @@ class RegistrationTest extends TestCase
     {
         parent::setUp();
     }
-    
+
     /**
      * Clean up the testing environment before the next test.
      *
@@ -27,7 +27,7 @@ class RegistrationTest extends TestCase
     {
         parent::tearDown();
     }
-    
+
     /**
      * Get package providers.
      *
@@ -40,15 +40,15 @@ class RegistrationTest extends TestCase
         config(['app.dev_providers' => [ADevProvider::class]]);
         config([
             'app.dev_aliases' => [
-                'Bar' => \TestsFixtures\Facades\ADevFacade::class
+                'Bar' => \TestsFixtures\Facades\ADevFacade::class,
             ],
         ]);
-        
+
         return [
             DevBooterProvider::class,
         ];
     }
-    
+
     /**
      * Create Dev Application.
      *
@@ -59,28 +59,28 @@ class RegistrationTest extends TestCase
     public function createApplication($env = 'testing')
     {
         $app = $this->resolveApplication();
-        
+
         $this->resolveApplicationExceptionHandler($app);
         $this->resolveApplicationCore($app, $env);
         $this->resolveApplicationConfiguration($app);
         $this->resolveApplicationHttpKernel($app);
         $this->resolveApplicationConsoleKernel($app);
-        
+
         $app->make('Illuminate\Foundation\Bootstrap\ConfigureLogging')->bootstrap($app);
         $app->make('Illuminate\Foundation\Bootstrap\HandleExceptions')->bootstrap($app);
         $app->make('Illuminate\Foundation\Bootstrap\RegisterFacades')->bootstrap($app);
         $app->make('Illuminate\Foundation\Bootstrap\SetRequestForConsole')->bootstrap($app);
         $app->make('Illuminate\Foundation\Bootstrap\RegisterProviders')->bootstrap($app);
-        
+
         $this->getEnvironmentSetUp($app);
-        
+
         $app->make('Illuminate\Foundation\Bootstrap\BootProviders')->bootstrap($app);
-        
+
         $app['router']->getRoutes()->refreshNameLookups();
-        
+
         return $app;
     }
-    
+
     /**
      * Resolve application core implementation.
      *
@@ -93,12 +93,12 @@ class RegistrationTest extends TestCase
     {
         Facade::clearResolvedInstances();
         Facade::setFacadeApplication($app);
-        
+
         $app->detectEnvironment(function () use ($env) {
             return $env;
         });
     }
-    
+
     /**
      * Test that dev providers are registred when on dev env.
      *
@@ -107,7 +107,7 @@ class RegistrationTest extends TestCase
     public function testThatDevProvidersAreRegisteredCorrectly()
     {
         $app = $this->createApplication('dev');
-        
+
         // Package is registered.
         $this->assertTrue(
             array_key_exists(
@@ -116,7 +116,7 @@ class RegistrationTest extends TestCase
             )
         );
     }
-    
+
     /**
      * Test that dev class aliases are properly booter.
      *
@@ -125,12 +125,12 @@ class RegistrationTest extends TestCase
     public function testThatClassAliasesAreBootedCorrectly()
     {
         $app = $this->createApplication('dev');
-        
+
         $this->assertTrue(
             array_key_exists('Bar', AliasLoader::getInstance()->getAliases())
         );
     }
-    
+
     /**
      * Test that when we are on production dev providers are
      * not registered.
@@ -140,7 +140,7 @@ class RegistrationTest extends TestCase
     public function testThatDevProvidersAreNotRegisteredOnProd()
     {
         $app = $this->createApplication('production');
-        
+
         $this->assertTrue(
             ! array_key_exists(
                 'TestsFixtures\Providers\ADevProvider',
