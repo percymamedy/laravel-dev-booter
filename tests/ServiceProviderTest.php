@@ -14,7 +14,7 @@ class ServiceProviderTest extends TestCase
     {
         parent::setUp();
     }
-    
+
     /**
      * Clean up the testing environment before the next test.
      *
@@ -24,7 +24,7 @@ class ServiceProviderTest extends TestCase
     {
         parent::tearDown();
     }
-    
+
     /**
      * Get package providers.
      *
@@ -36,7 +36,7 @@ class ServiceProviderTest extends TestCase
     {
         return [DevBooterProvider::class];
     }
-    
+
     /**
      * Test that our config works properly
      * and that we can get desired values
@@ -49,7 +49,7 @@ class ServiceProviderTest extends TestCase
         $this->assertEquals('app.dev_providers', config('dev-booter.dev_providers_config_key'));
         $this->assertEquals('app.dev_aliases', config('dev-booter.dev_aliases_config_key'));
     }
-    
+
     /**
      * Test that our config files are being published correctly.
      *
@@ -59,10 +59,10 @@ class ServiceProviderTest extends TestCase
     {
         // Publish config.
         $this->artisan('vendor:publish', ['--tag' => 'config']);
-        
+
         // File must be there
         $this->assertFileExists(config_path('dev-booter.php'));
-        
+
         // Delete config files
         if (file_exists(config_path('dev-booter.php'))) {
             unlink(config_path('dev-booter.php'));

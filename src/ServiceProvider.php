@@ -18,14 +18,14 @@ class ServiceProvider extends BaseServiceProvider
         $this->publishes([
             __DIR__ . '/config/dev-booter.php' => config_path('dev-booter.php'),
         ], 'config');
-        
+
         // We are on one of the dev environment
         if ($this->isOnADevEnvironment()) {
             // Boot dev class aliases.
             $this->bootDevAliases();
         }
     }
-    
+
     /**
      * Register the application services.
      *
@@ -37,14 +37,14 @@ class ServiceProvider extends BaseServiceProvider
         $this->mergeConfigFrom(
             __DIR__ . '/config/dev-booter.php', 'dev-booter'
         );
-        
+
         // We are on one of the Dev Environments.
         if ($this->isOnADevEnvironment()) {
             // Register all dev providers.
             $this->registerDevProviders();
         }
     }
-    
+
     /**
      * Register all dev providers.
      *
@@ -57,7 +57,7 @@ class ServiceProvider extends BaseServiceProvider
             $this->app->register($devServiceProviders);
         });
     }
-    
+
     /**
      * Boot all dev class aliases.
      *
@@ -67,13 +67,13 @@ class ServiceProvider extends BaseServiceProvider
     {
         //Get the instance of the alias loader
         $loader = AliasLoader::getInstance();
-        
+
         // Boot all classes Aliases.
         $this->collectDevAliases()->each(function ($facade, $alias) use ($loader) {
             $loader->alias($alias, $facade);
         });
     }
-    
+
     /**
      * Check if we are on a dev environment.
      *
@@ -83,7 +83,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         return in_array($this->app->environment(), config('dev-booter.dev_environments'));
     }
-    
+
     /**
      * Return list of Dev providers.
      *
@@ -94,7 +94,7 @@ class ServiceProvider extends BaseServiceProvider
         // Collect Dev providers and return.
         return collect(config(config('dev-booter.dev_providers_config_key')));
     }
-    
+
     /**
      * Return list of Dev aliases.
      *
