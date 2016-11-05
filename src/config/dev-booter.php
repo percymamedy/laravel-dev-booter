@@ -1,7 +1,7 @@
 <?php
 
 return [
-    
+
     /*
     |--------------------------------------------------------------------------
     | Development Environments
@@ -12,13 +12,13 @@ return [
     | needs to be registered or not. Go crazy here.
     |
     */
-    
+
     'dev_environments' => [
         'local',
         'dev',
         'testing',
     ],
-    
+
     /*
     |--------------------------------------------------------------------------
     | Development Providers config key
@@ -29,9 +29,9 @@ return [
     | to change this value if you want to.
     |
     */
-    
+
     'dev_providers_config_key' => 'app.dev_providers',
-    
+
     /*
     |--------------------------------------------------------------------------
     | Development Class Aliases
@@ -42,6 +42,6 @@ return [
     | to choose where to place them.
     |
     */
-    
-    'dev_aliases_config_key' => 'app.dev_aliases'
+
+    'dev_aliases_config_key' => 'app.dev_aliases',
 ];
