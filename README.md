@@ -2,8 +2,9 @@
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/bc49ef2d-07ea-4bd0-bba0-607386b49004/big.png)](https://insight.sensiolabs.com/projects/bc49ef2d-07ea-4bd0-bba0-607386b49004)
 
-[![Build Status](https://travis-ci.org/percymamedy/laravel-dev-booter.svg?branch=master)](https://travis-ci.org/percymamedy/laravel-dev-booter)
 [![StyleCI](https://styleci.io/repos/70182697/shield?branch=master)](https://styleci.io/repos/70182697)
+[![Dependency Status](https://dependencyci.com/github/percymamedy/laravel-dev-booter/badge)](https://dependencyci.com/github/percymamedy/laravel-dev-booter)
+[![Build Status](https://travis-ci.org/percymamedy/laravel-dev-booter.svg?branch=master)](https://travis-ci.org/percymamedy/laravel-dev-booter)
 [![Latest Stable Version](https://poser.pugx.org/percymamedy/laravel-dev-booter/v/stable)](https://packagist.org/packages/percymamedy/laravel-dev-booter)
 [![Total Downloads](https://poser.pugx.org/percymamedy/laravel-dev-booter/downloads)](https://packagist.org/packages/percymamedy/laravel-dev-booter)
 [![Latest Unstable Version](https://poser.pugx.org/percymamedy/laravel-dev-booter/v/unstable)](https://packagist.org/packages/percymamedy/laravel-dev-booter)
