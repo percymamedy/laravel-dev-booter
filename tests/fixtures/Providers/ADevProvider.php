@@ -2,8 +2,8 @@
 
 namespace TestsFixtures\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use TestsFixtures\Foo\Bar;
+use Illuminate\Support\ServiceProvider;
 
 class ADevProvider extends ServiceProvider
 {
