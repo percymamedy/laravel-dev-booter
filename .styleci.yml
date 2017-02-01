@@ -1,7 +1,1 @@
 preset: laravel
-
-disabled:
-    - concat_without_spaces
-
-enabled:
-    - concat_with_spaces
