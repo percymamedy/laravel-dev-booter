@@ -1,10 +1,10 @@
 <?php
 
+use Orchestra\Testbench\TestCase;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Facade;
-use Orchestra\Testbench\TestCase;
-use PercyMamedy\LaravelDevBooter\ServiceProvider as DevBooterProvider;
 use TestsFixtures\Providers\ADevProvider;
+use PercyMamedy\LaravelDevBooter\ServiceProvider as DevBooterProvider;
 
 class RegistrationTest extends TestCase
 {
@@ -65,7 +65,7 @@ class RegistrationTest extends TestCase
         $this->resolveApplicationConfiguration($app);
         $this->resolveApplicationHttpKernel($app);
         $this->resolveApplicationConsoleKernel($app);
-        
+
         if ($app->version() >= 5.3 && $app->version() < 5.4) {
             $app->make('Illuminate\Foundation\Bootstrap\ConfigureLogging')->bootstrap($app);
         }
