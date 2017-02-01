@@ -39,10 +39,10 @@ class RegistrationTest extends TestCase
     {
         config(['app.dev_providers' => [ADevProvider::class]]);
         config([
-            'app.dev_aliases' => [
-                'Bar' => \TestsFixtures\Facades\ADevFacade::class,
-            ],
-        ]);
+                   'app.dev_aliases' => [
+                       'Bar' => \TestsFixtures\Facades\ADevFacade::class,
+                   ],
+               ]);
 
         return [
             DevBooterProvider::class,
@@ -103,7 +103,7 @@ class RegistrationTest extends TestCase
     }
 
     /**
-     * Test that dev providers are registred when on dev env.
+     * Test that dev providers are registered when on dev env.
      *
      * @return void
      */
@@ -112,12 +112,7 @@ class RegistrationTest extends TestCase
         $app = $this->createApplication('dev');
 
         // Package is registered.
-        $this->assertTrue(
-            array_key_exists(
-                'TestsFixtures\Providers\ADevProvider',
-                $app->getLoadedProviders()
-            )
-        );
+        $this->assertTrue(array_key_exists('TestsFixtures\Providers\ADevProvider', $app->getLoadedProviders()));
     }
 
     /**
@@ -129,9 +124,7 @@ class RegistrationTest extends TestCase
     {
         $app = $this->createApplication('dev');
 
-        $this->assertTrue(
-            array_key_exists('Bar', AliasLoader::getInstance()->getAliases())
-        );
+        $this->assertTrue(array_key_exists('Bar', AliasLoader::getInstance()->getAliases()));
     }
 
     /**
@@ -144,11 +137,6 @@ class RegistrationTest extends TestCase
     {
         $app = $this->createApplication('production');
 
-        $this->assertTrue(
-            ! array_key_exists(
-                'TestsFixtures\Providers\ADevProvider',
-                $app->getLoadedProviders()
-            )
-        );
+        $this->assertTrue(! array_key_exists('TestsFixtures\Providers\ADevProvider', $app->getLoadedProviders()));
     }
 }

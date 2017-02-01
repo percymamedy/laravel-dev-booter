@@ -15,9 +15,7 @@ class ServiceProvider extends BaseServiceProvider
     public function boot()
     {
         // Publish all config files.
-        $this->publishes([
-            __DIR__ . '/config/dev-booter.php' => config_path('dev-booter.php'),
-        ], 'config');
+        $this->publishes([__DIR__.'/config/dev-booter.php' => config_path('dev-booter.php')], 'config');
 
         // We are on one of the dev environment
         if ($this->isOnADevEnvironment()) {
@@ -34,9 +32,7 @@ class ServiceProvider extends BaseServiceProvider
     public function register()
     {
         // Register and Publish Config.
-        $this->mergeConfigFrom(
-            __DIR__ . '/config/dev-booter.php', 'dev-booter'
-        );
+        $this->mergeConfigFrom(__DIR__.'/config/dev-booter.php', 'dev-booter');
 
         // We are on one of the Dev Environments.
         if ($this->isOnADevEnvironment()) {
