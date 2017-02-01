@@ -65,8 +65,11 @@ class RegistrationTest extends TestCase
         $this->resolveApplicationConfiguration($app);
         $this->resolveApplicationHttpKernel($app);
         $this->resolveApplicationConsoleKernel($app);
+        
+        if ($app->version() >= 5.3 && $app->version() < 5.4) {
+            $app->make('Illuminate\Foundation\Bootstrap\ConfigureLogging')->bootstrap($app);
+        }
 
-        $app->make('Illuminate\Foundation\Bootstrap\ConfigureLogging')->bootstrap($app);
         $app->make('Illuminate\Foundation\Bootstrap\HandleExceptions')->bootstrap($app);
         $app->make('Illuminate\Foundation\Bootstrap\RegisterFacades')->bootstrap($app);
         $app->make('Illuminate\Foundation\Bootstrap\SetRequestForConsole')->bootstrap($app);
