@@ -25,12 +25,15 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you may define the config key where you placed all your dev
-    | providers the default is "app.dev_providers", but feel free
-    | to change this value if you want to.
+    | providers. You may define a key for each environment.
     |
     */
 
-    'dev_providers_config_key' => 'app.dev_providers',
+    'dev_providers_config_keys' => [
+        'dev'     => 'app.dev_providers',
+        'local'   => 'app.local_providers',
+        'testing' => 'app.testing_providers'
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -38,10 +41,13 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you may define the config key where you placed akl your dev class
-    | aliases. The default is "app.dev_aliases", but again you are free
-    | to choose where to place them.
+    | aliases. You may define a key for each environment.
     |
     */
 
-    'dev_aliases_config_key' => 'app.dev_aliases',
+    'dev_aliases_config_keys' => [
+        'dev'     => 'app.dev_aliases',
+        'local'   => 'app.local_aliases',
+        'testing' => 'app.testing_aliases'
+    ],
 ];

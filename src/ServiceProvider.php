@@ -3,6 +3,7 @@
 namespace PercyMamedy\LaravelDevBooter;
 
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider
@@ -48,8 +49,11 @@ class ServiceProvider extends BaseServiceProvider
      */
     protected function registerDevProviders()
     {
+        // Get Dev providers key.
+        $devProviderKey = 'dev-booter.dev_providers_config_keys.'.$this->app->environment();
+
         // Register All dev providers.
-        $this->collectDevServiceProviders()->each(function ($devServiceProviders) {
+        $this->collectDevServiceProviders($devProviderKey)->each(function ($devServiceProviders) {
             $this->app->register($devServiceProviders);
         });
     }
@@ -64,8 +68,11 @@ class ServiceProvider extends BaseServiceProvider
         //Get the instance of the alias loader
         $loader = AliasLoader::getInstance();
 
+        // Get Dev class aliases config key.
+        $devProviderKey = 'dev-booter.dev_aliases_config_keys.'.$this->app->environment();
+
         // Boot all classes Aliases.
-        $this->collectDevAliases()->each(function ($facade, $alias) use ($loader) {
+        $this->collectDevAliases($devProviderKey)->each(function ($facade, $alias) use ($loader) {
             $loader->alias($alias, $facade);
         });
     }
@@ -77,28 +84,48 @@ class ServiceProvider extends BaseServiceProvider
      */
     protected function isOnADevEnvironment()
     {
-        return in_array($this->app->environment(), config('dev-booter.dev_environments'));
+        return $this->collectDevEnvironments()->search($this->app->environment()) != false;
     }
 
     /**
-     * Return list of Dev providers.
+     * Return Collection of Dev providers.
+     *
+     * @param string $configKey
      *
      * @return \Illuminate\Support\Collection
      */
-    protected function collectDevServiceProviders()
+    protected function collectDevServiceProviders($configKey)
     {
-        // Collect Dev providers and return.
-        return collect(config(config('dev-booter.dev_providers_config_key')));
+        // Get the Config key where devProviders are located.
+        $devProvidersConfigLocation = Config::get($configKey);
+
+        // Return Dev Providers.
+        return collect(Config::get($devProvidersConfigLocation, []));
     }
 
     /**
-     * Return list of Dev aliases.
+     * Return Collection of Dev aliases.
+     *
+     * @param string $configKey
      *
      * @return \Illuminate\Support\Collection
      */
-    protected function collectDevAliases()
+    protected function collectDevAliases($configKey)
     {
-        // Collect Dev Aliases and return them.
-        return collect(config(config('dev-booter.dev_aliases_config_key')));
+        // Get the Config key where dev aliases are located.
+        $devAliasesConfigLocation = Config::get($configKey);
+
+        // Return Dev aliases.
+        return collect(Config::get($devAliasesConfigLocation, []));
+    }
+
+    /**
+     * Get a Collection of dev environments.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    protected function collectDevEnvironments()
+    {
+        return collect(Config::get('dev-booter.dev_environments'));
     }
 }
