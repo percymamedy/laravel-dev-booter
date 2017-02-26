@@ -47,16 +47,16 @@ class ServiceProviderTest extends TestCase
     public function testConfigCanGetValues()
     {
         $this->assertEquals([
-                                'dev'     => 'app.dev_providers',
-                                'local'   => 'app.local_providers',
-                                'testing' => 'app.testing_providers'
-                            ], config('dev-booter.dev_providers_config_keys'));
+            'dev'     => 'app.dev_providers',
+            'local'   => 'app.local_providers',
+            'testing' => 'app.testing_providers',
+        ], config('dev-booter.dev_providers_config_keys'));
 
         $this->assertEquals([
-                                'dev'     => 'app.dev_aliases',
-                                'local'   => 'app.local_aliases',
-                                'testing' => 'app.testing_aliases'
-                            ], config('dev-booter.dev_aliases_config_keys'));
+            'dev'     => 'app.dev_aliases',
+            'local'   => 'app.local_aliases',
+            'testing' => 'app.testing_aliases',
+        ], config('dev-booter.dev_aliases_config_keys'));
     }
 
     /**

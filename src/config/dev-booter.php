@@ -32,7 +32,7 @@ return [
     'dev_providers_config_keys' => [
         'dev'     => 'app.dev_providers',
         'local'   => 'app.local_providers',
-        'testing' => 'app.testing_providers'
+        'testing' => 'app.testing_providers',
     ],
 
     /*
@@ -48,6 +48,6 @@ return [
     'dev_aliases_config_keys' => [
         'dev'     => 'app.dev_aliases',
         'local'   => 'app.local_aliases',
-        'testing' => 'app.testing_aliases'
+        'testing' => 'app.testing_aliases',
     ],
 ];
