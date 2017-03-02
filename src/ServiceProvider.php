@@ -2,6 +2,7 @@
 
 namespace PercyMamedy\LaravelDevBooter;
 
+use Illuminate\Support\Collection;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
@@ -92,15 +93,25 @@ class ServiceProvider extends BaseServiceProvider
      *
      * @param string $configKey
      *
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     protected function collectDevServiceProviders($configKey)
     {
         // Get the Config key where devProviders are located.
         $devProvidersConfigLocation = Config::get($configKey);
 
+        // Get Providers keys.
+        $keys = is_string($devProvidersConfigLocation) ? [$devProvidersConfigLocation] : $devProvidersConfigLocation;
+
         // Return Dev Providers.
-        return collect(Config::get($devProvidersConfigLocation, []));
+        return collect($keys)->transform(function ($location) {
+            // Transform each Location key to the actual array
+            // containing the Providers.
+            return Config::get($location);
+        })->reject(function ($arrayOfProviders) {
+            // Remove all null values
+            return is_null($arrayOfProviders);
+        })->flatten()->unique()->values();
     }
 
     /**
@@ -108,21 +119,32 @@ class ServiceProvider extends BaseServiceProvider
      *
      * @param string $configKey
      *
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     protected function collectDevAliases($configKey)
     {
         // Get the Config key where dev aliases are located.
         $devAliasesConfigLocation = Config::get($configKey);
 
-        // Return Dev aliases.
-        return collect(Config::get($devAliasesConfigLocation, []));
+        // Get Aliases keys.
+        $keys = is_string($devAliasesConfigLocation) ? [$devAliasesConfigLocation] : $devAliasesConfigLocation;
+
+        return collect($keys)->transform(function ($location) {
+            // Transform each Location key to the actual array
+            // containing the Aliases.
+            return Config::get($location);
+        })->reject(function ($arrayOfProviders) {
+            // Remove all null values
+            return is_null($arrayOfProviders);
+        })->flatMap(function ($values) {
+            return $values;
+        })->unique();
     }
 
     /**
      * Get a Collection of dev environments.
      *
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     protected function collectDevEnvironments()
     {

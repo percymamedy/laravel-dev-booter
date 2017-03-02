@@ -2,9 +2,10 @@
 
 use Illuminate\Foundation\AliasLoader;
 use TestsFixtures\Providers\ADevProvider;
+use TestsFixtures\Providers\AnotherDevProvider;
 use PercyMamedy\LaravelDevBooter\ServiceProvider as DevBooterProvider;
 
-class RegistrationTest extends AbstractTestCase
+class RegistrationMultipleTest extends AbstractTestCase
 {
     /**
      * Setup the test environment.
@@ -35,8 +36,12 @@ class RegistrationTest extends AbstractTestCase
      */
     public function getPackageProviders($app)
     {
+        config(['dev-booter.dev_providers_config_keys.dev' => ['app.dev_providers', 'app.local_providers']]);
+        config(['dev-booter.dev_aliases_config_keys.dev' => ['app.dev_aliases', 'app.local_aliases']]);
         config(['app.dev_providers' => [ADevProvider::class]]);
+        config(['app.local_providers' => [AnotherDevProvider::class]]);
         config(['app.dev_aliases' => ['Bar' => \TestsFixtures\Facades\ADevFacade::class]]);
+        config(['app.local_aliases' => ['Foo' => \TestsFixtures\Facades\AnotherDevFacade::class]]);
 
         return [
             DevBooterProvider::class,
@@ -44,42 +49,35 @@ class RegistrationTest extends AbstractTestCase
     }
 
     /**
-     * Test that dev providers are registered when on dev env.
+     * Test that when we specify multiple providers by assingning array
+     * for config location all of the providers are loaded.
      *
      * @return void
      */
-    public function testThatDevProvidersAreRegisteredCorrectly()
+    public function testMultipleProvidersByEnvironmentAreLoadedCorrectly()
     {
         $app = $this->createApplication('dev');
 
-        // Package is registered.
         $this->assertTrue(array_key_exists('TestsFixtures\Providers\ADevProvider', $app->getLoadedProviders()));
         $this->assertEquals('dummy.value', $app->make('dummy.key'));
         $this->assertInstanceOf(\TestsFixtures\Foo\Bar::class, $app->make('bar'));
+
+        $this->assertTrue(array_key_exists('TestsFixtures\Providers\AnotherDevProvider', $app->getLoadedProviders()));
+        $this->assertEquals('another-dummy.value', $app->make('another-dummy.key'));
+        $this->assertInstanceOf(\TestsFixtures\Foo\Foo::class, $app->make('foo'));
     }
 
     /**
-     * Test that dev class aliases are properly booter.
+     * Test that when we specify multiple aliases config location
+     * per environment all aliases are booted correctly.
      *
      * @return void
      */
-    public function testThatClassAliasesAreBootedCorrectly()
+    public function testMultipleAliasesAreLoadedCorrectly()
     {
         $app = $this->createApplication('dev');
 
         $this->assertTrue(array_key_exists('Bar', AliasLoader::getInstance()->getAliases()));
-    }
-
-    /**
-     * Test that when we are on production dev providers are
-     * not registered.
-     *
-     * @return void
-     */
-    public function testThatDevProvidersAreNotRegisteredOnProd()
-    {
-        $app = $this->createApplication('production');
-
-        $this->assertTrue(! array_key_exists('TestsFixtures\Providers\ADevProvider', $app->getLoadedProviders()));
+        $this->assertTrue(array_key_exists('Foo', AliasLoader::getInstance()->getAliases()));
     }
 }

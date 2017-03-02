@@ -56,31 +56,43 @@ You may now set your development environments in ```config/dev-booter.php```
 ],
 ```
  
-You can also set where you want your dev ServiceProviders to be loaded from.
+You now can set where you want your dev ServiceProviders loaded from, for 
+each of your environments. You can even specify many locations for an environment, 
+Laravel-Dev-Booter will take care of loading providers in each of these locations. 
+
+Hence, for example on a local environment you can load local and dev providers but on
+local you can load only local providers.
  
 ```php
-'dev_providers_config_key' => 'app.dev_providers'
+'dev_providers_config_keys' => [
+    'dev'     => ['app.dev_providers', 'app.local_providers'],
+    'local'   => 'app.local_providers',
+    'testing' => 'app.testing_providers',
+]
 ```
 
-You can also specify where you want to place your dev class aliases.
+The same principle applies to your class aliases.
 
 ```php
-'dev_aliases_config_key' => 'app.dev_aliases'
+'dev_aliases_config_keys' => [
+    'dev'     => ['app.dev_aliases', 'app.local_aliases'],
+    'local'   => 'app.local_aliases',
+    'testing' => 'app.testing_aliases',
+]
 ```
+
+Remember these locations are valid Laravel config keys. Hence this will allow you to place your ```dev``` providers
+anywhere you want.
  
-Now all you need is to set your Dev ServiceProviders in ```config/app.php``` as you would for regular
-ServiceProviders. Except that now there is a clean separation of the two and unwanted ServiceProviders will
-not be loaded or registered in your production environment.
+Now all you need is to set your Dev ServiceProviders in your config files as you would for regular
+ServiceProviders. Except that now there is a clean separation of the two. Unwanted ServiceProviders are
+not loaded or registered in your production environment.
  
 ```php
 'dev_providers' => [
   ...
 ]
 ```
-
-You may also boot class aliases that may only be used on dev enviroment. You only need to add to your ```config/app.php``` 
-the key ```'dev_aliases'``` and place all your dev class aliases there. Now those aliases or facades will only
-be booted on development.
 
 ```php
 'dev_aliases' => [
