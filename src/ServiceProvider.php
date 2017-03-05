@@ -85,7 +85,7 @@ class ServiceProvider extends BaseServiceProvider
      */
     protected function isOnADevEnvironment()
     {
-        return $this->collectDevEnvironments()->search($this->app->environment()) != false;
+        return $this->collectDevEnvironments()->search($this->app->environment()) !== false;
     }
 
     /**
