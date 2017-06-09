@@ -32,6 +32,10 @@ Install Laravel Dev Booter as you would with any other dependency managed by Com
  ```
 
 ### Configuration
+> If you are using Laravel >= 5.5, you can skip service registration 
+> and aliases registration thanks to Laravel auto package discovery 
+> feature.
+
 After installing Laravel Dev Booter all you need is to register the ```PercyMamedy\LaravelDevBooter\ServiceProvider``` 
 in your `config/app.php` configuration file:
 

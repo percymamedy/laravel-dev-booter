@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "laravel/framework": "5.0 - 5.4"
+        "illuminate/support": "~5.0"
     },
     "require-dev": {
         "orchestra/testbench": "~3.0",
@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PercyMamedy\\LaravelDevBooter\\" : "src/"
+            "PercyMamedy\\LaravelDevBooter\\": "src/"
         }
     },
     "autoload-dev": {
@@ -29,6 +29,11 @@
     "extra": {
         "branch-alias": {
             "dev-master": "0.3.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "PercyMamedy\\LaravelDevBooter\\ServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
