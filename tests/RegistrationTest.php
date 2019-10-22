@@ -7,26 +7,6 @@ use PercyMamedy\LaravelDevBooter\ServiceProvider as DevBooterProvider;
 class RegistrationTest extends AbstractTestCase
 {
     /**
-     * Setup the test environment.
-     *
-     * @return void
-     */
-    public function setUp()
-    {
-        parent::setUp();
-    }
-
-    /**
-     * Clean up the testing environment before the next test.
-     *
-     * @return void
-     */
-    public function tearDown()
-    {
-        parent::tearDown();
-    }
-
-    /**
      * Get package providers.
      *
      * @param  \Illuminate\Foundation\Application $app
@@ -65,7 +45,7 @@ class RegistrationTest extends AbstractTestCase
      */
     public function testThatClassAliasesAreBootedCorrectly()
     {
-        $app = $this->createApplication('dev');
+        $this->createApplication('dev');
 
         $this->assertTrue(array_key_exists('Bar', AliasLoader::getInstance()->getAliases()));
     }

@@ -1,5 +1,5 @@
 <h2 align="center">
-   <img src="https://raw.githubusercontent.com/LaraChimp/art-work/master/packages/dev-booter/dev-booter-art.png"> Laravel 5 dev booter
+   <img src="https://raw.githubusercontent.com/LaraChimp/art-work/master/packages/dev-booter/dev-booter-art.png"> Laravel dev booter
 </h2>
 
 <p align="center">
@@ -23,7 +23,7 @@ This provider will exclude unwanted providers from your production environment.
 Laravel Dev Booter is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
 
 ### Installation
-This packages works for Laravel versions 5.* only.
+This packages works for Laravel versions 5.* and ^6.0 only.
 
 Install Laravel Dev Booter as you would with any other dependency managed by Composer:
 
