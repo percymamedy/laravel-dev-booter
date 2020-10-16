@@ -22,9 +22,15 @@ This provider will exclude unwanted providers from your production environment.
 ## License
 Laravel Dev Booter is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
 
-### Installation
-This packages works for Laravel versions 5.* and ^6.0 only.
+## Version Compatibility
 
+ Laravel  | DevBooter
+:---------|:----------
+ 5.x      | 0.2.x
+ 6.x      | 1.0.x
+ 7.x      | 2.0.x
+ 
+### Installation
 Install Laravel Dev Booter as you would with any other dependency managed by Composer:
 
  ```bash

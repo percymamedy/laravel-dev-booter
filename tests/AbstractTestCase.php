@@ -1,7 +1,7 @@
 <?php
 
-use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Facades\Facade;
+use Orchestra\Testbench\TestCase;
 
 abstract class AbstractTestCase extends TestCase
 {
