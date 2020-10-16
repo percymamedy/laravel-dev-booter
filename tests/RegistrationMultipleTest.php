@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Foundation\AliasLoader;
+use PercyMamedy\LaravelDevBooter\ServiceProvider as DevBooterProvider;
 use TestsFixtures\Providers\ADevProvider;
 use TestsFixtures\Providers\AnotherDevProvider;
-use PercyMamedy\LaravelDevBooter\ServiceProvider as DevBooterProvider;
 
 class RegistrationMultipleTest extends AbstractTestCase
 {

@@ -2,8 +2,8 @@
 
 namespace PercyMamedy\LaravelDevBooter;
 
-use Illuminate\Support\Collection;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
