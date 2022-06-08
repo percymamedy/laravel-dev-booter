@@ -8,8 +8,7 @@ abstract class AbstractTestCase extends TestCase
     /**
      * Create Dev Application.
      *
-     * @param string $env
-     *
+     * @param  string  $env
      * @return \Illuminate\Foundation\Application
      */
     public function createApplication($env = 'testing')
@@ -43,9 +42,8 @@ abstract class AbstractTestCase extends TestCase
     /**
      * Resolve application core implementation.
      *
-     * @param \Illuminate\Foundation\Application $app
-     * @param string                             $env
-     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @param  string  $env
      * @return void
      */
     protected function resolveApplicationCore($app, $env = 'testing')

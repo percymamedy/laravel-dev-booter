@@ -9,8 +9,7 @@ class RegistrationTest extends AbstractTestCase
     /**
      * Get package providers.
      *
-     * @param  \Illuminate\Foundation\Application $app
-     *
+     * @param  \Illuminate\Foundation\Application  $app
      * @return array
      */
     public function getPackageProviders($app)
