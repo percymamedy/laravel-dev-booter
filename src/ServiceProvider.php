@@ -91,8 +91,7 @@ class ServiceProvider extends BaseServiceProvider
     /**
      * Return Collection of Dev providers.
      *
-     * @param string $configKey
-     *
+     * @param  string  $configKey
      * @return Collection
      */
     protected function collectDevServiceProviders($configKey)
@@ -117,8 +116,7 @@ class ServiceProvider extends BaseServiceProvider
     /**
      * Return Collection of Dev aliases.
      *
-     * @param string $configKey
-     *
+     * @param  string  $configKey
      * @return Collection
      */
     protected function collectDevAliases($configKey)
