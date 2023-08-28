@@ -1,5 +1,11 @@
 <?php
 
+/** @noinspection PhpFullyQualifiedNameUsageInspection */
+
+declare(strict_types=1);
+
+namespace PercyMamedy\LaravelDevBooter\Tests;
+
 use Orchestra\Testbench\TestCase;
 use PercyMamedy\LaravelDevBooter\ServiceProvider as DevBooterProvider;
 
@@ -9,21 +15,21 @@ class ServiceProviderTest extends TestCase
      * Get package providers.
      *
      * @param  \Illuminate\Foundation\Application  $app
-     * @return array
+     * @return array<int, class-string>
      */
-    public function getPackageProviders($app)
+    public function getPackageProviders($app): array
     {
-        return [DevBooterProvider::class];
+        return [
+            DevBooterProvider::class,
+        ];
     }
 
     /**
      * Test that our config works properly
      * and that we can get desired values
      * from them.
-     *
-     * @return void
      */
-    public function testConfigCanGetValues()
+    public function testConfigCanGetValues(): void
     {
         $this->assertEquals([
             'dev'     => 'app.dev_providers',
@@ -40,18 +46,13 @@ class ServiceProviderTest extends TestCase
 
     /**
      * Test that our config files are being published correctly.
-     *
-     * @return void
      */
-    public function testPublishingOfConfigFile()
+    public function testPublishingOfConfigFile(): void
     {
-        // Publish config.
         $this->artisan('vendor:publish', ['--tag' => 'config']);
 
-        // File must be there
         $this->assertFileExists(config_path('dev-booter.php'));
 
-        // Delete config files
         if (file_exists(config_path('dev-booter.php'))) {
             unlink(config_path('dev-booter.php'));
         }

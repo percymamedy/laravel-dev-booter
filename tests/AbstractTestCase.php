@@ -1,5 +1,7 @@
 <?php
 
+namespace PercyMamedy\LaravelDevBooter\Tests;
+
 use Illuminate\Support\Facades\Facade;
 use Orchestra\Testbench\TestCase;
 
