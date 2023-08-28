@@ -1,9 +1,13 @@
 <?php
 
+/** @noinspection PhpFullyQualifiedNameUsageInspection */
+
+declare(strict_types=1);
+
+namespace PercyMamedy\LaravelDevBooter\Tests;
+
 use Illuminate\Foundation\AliasLoader;
 use PercyMamedy\LaravelDevBooter\ServiceProvider as DevBooterProvider;
-use TestsFixtures\Providers\ADevProvider;
-use TestsFixtures\Providers\AnotherDevProvider;
 
 class RegistrationMultipleTest extends AbstractTestCase
 {
@@ -11,16 +15,16 @@ class RegistrationMultipleTest extends AbstractTestCase
      * Get package providers.
      *
      * @param  \Illuminate\Foundation\Application  $app
-     * @return array
+     * @return array<int, class-string>
      */
-    public function getPackageProviders($app)
+    public function getPackageProviders($app): array
     {
         config(['dev-booter.dev_providers_config_keys.dev' => ['app.dev_providers', 'app.local_providers']]);
         config(['dev-booter.dev_aliases_config_keys.dev' => ['app.dev_aliases', 'app.local_aliases']]);
-        config(['app.dev_providers' => [ADevProvider::class]]);
-        config(['app.local_providers' => [AnotherDevProvider::class]]);
-        config(['app.dev_aliases' => ['Bar' => \TestsFixtures\Facades\ADevFacade::class]]);
-        config(['app.local_aliases' => ['Foo' => \TestsFixtures\Facades\AnotherDevFacade::class]]);
+        config(['app.dev_providers' => [\PercyMamedy\LaravelDevBooter\Tests\Fixtures\Providers\ADevProvider::class]]);
+        config(['app.local_providers' => [\PercyMamedy\LaravelDevBooter\Tests\Fixtures\Providers\AnotherDevProvider::class]]);
+        config(['app.dev_aliases' => ['Bar' => \PercyMamedy\LaravelDevBooter\Tests\Fixtures\Facades\ADevFacade::class]]);
+        config(['app.local_aliases' => ['Foo' => \PercyMamedy\LaravelDevBooter\Tests\Fixtures\Facades\AnotherDevFacade::class]]);
 
         return [
             DevBooterProvider::class,
@@ -30,33 +34,29 @@ class RegistrationMultipleTest extends AbstractTestCase
     /**
      * Test that when we specify multiple providers by assingning array
      * for config location all of the providers are loaded.
-     *
-     * @return void
      */
-    public function testMultipleProvidersByEnvironmentAreLoadedCorrectly()
+    public function testMultipleProvidersByEnvironmentAreLoadedCorrectly(): void
     {
         $app = $this->createApplication('dev');
 
-        $this->assertTrue(array_key_exists('TestsFixtures\Providers\ADevProvider', $app->getLoadedProviders()));
+        $this->assertArrayHasKey('PercyMamedy\LaravelDevBooter\Tests\Fixtures\Providers\ADevProvider', $app->getLoadedProviders());
         $this->assertEquals('dummy.value', $app->make('dummy.key'));
-        $this->assertInstanceOf(\TestsFixtures\Foo\Bar::class, $app->make('bar'));
+        $this->assertInstanceOf(\PercyMamedy\LaravelDevBooter\Tests\Fixtures\Foo\Bar::class, $app->make('bar'));
 
-        $this->assertTrue(array_key_exists('TestsFixtures\Providers\AnotherDevProvider', $app->getLoadedProviders()));
+        $this->assertArrayHasKey('PercyMamedy\LaravelDevBooter\Tests\Fixtures\Providers\AnotherDevProvider', $app->getLoadedProviders());
         $this->assertEquals('another-dummy.value', $app->make('another-dummy.key'));
-        $this->assertInstanceOf(\TestsFixtures\Foo\Foo::class, $app->make('foo'));
+        $this->assertInstanceOf(\PercyMamedy\LaravelDevBooter\Tests\Fixtures\Foo\Foo::class, $app->make('foo'));
     }
 
     /**
      * Test that when we specify multiple aliases config location
      * per environment all aliases are booted correctly.
-     *
-     * @return void
      */
-    public function testMultipleAliasesAreLoadedCorrectly()
+    public function testMultipleAliasesAreLoadedCorrectly(): void
     {
         $this->createApplication('dev');
 
-        $this->assertTrue(array_key_exists('Bar', AliasLoader::getInstance()->getAliases()));
-        $this->assertTrue(array_key_exists('Foo', AliasLoader::getInstance()->getAliases()));
+        $this->assertArrayHasKey('Bar', AliasLoader::getInstance()->getAliases());
+        $this->assertArrayHasKey('Foo', AliasLoader::getInstance()->getAliases());
     }
 }

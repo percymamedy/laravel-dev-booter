@@ -1,31 +1,28 @@
 <?php
 
-namespace TestsFixtures\Providers;
+declare(strict_types=1);
+
+namespace PercyMamedy\LaravelDevBooter\Tests\Fixtures\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use TestsFixtures\Foo\Foo;
+use PercyMamedy\LaravelDevBooter\Tests\Fixtures\Foo\Foo;
 
 class AnotherDevProvider extends ServiceProvider
 {
     /**
      * Boot Application Services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
     }
 
     /**
      * Register Application Services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->instance('another-dummy.key', 'another-dummy.value');
 
-        // Bind a dummy class.
         $this->app->bind('foo', function () {
             return new Foo();
         });
