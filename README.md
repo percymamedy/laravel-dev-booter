@@ -32,6 +32,7 @@ Laravel Dev Booter is open-sourced software licensed under the [MIT license](htt
  8.x      | 3.0.x
  9.x      | 3.0.x
  10.x     | 4.0.x
+ 11.x     | 5.0.x
  
 ### Installation
 Install Laravel Dev Booter as you would with any other dependency managed by Composer:

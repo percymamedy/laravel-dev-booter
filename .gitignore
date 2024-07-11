@@ -7,3 +7,5 @@ Thumbs.db
 /.idea
 /.vscode
 .phpunit.result.cache
+.phpunit.cache
+build
