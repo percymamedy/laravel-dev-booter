@@ -5,11 +5,8 @@
 <p align="center">
     <a href="https://packagist.org/packages/percymamedy/laravel-dev-booter"><img src="https://poser.pugx.org/percymamedy/laravel-dev-booter/v/stable" alt="Latest Stable Version"></a>
     <a href="https://packagist.org/packages/percymamedy/laravel-dev-booter"><img src="https://poser.pugx.org/percymamedy/laravel-dev-booter/v/unstable" alt="Latest Unstable Version"></a>
-    <a href="https://travis-ci.org/percymamedy/laravel-dev-booter"><img src="https://travis-ci.org/percymamedy/laravel-dev-booter.svg?branch=0.2" alt="Build Status"></a>
-    <a href="https://styleci.io/repos/70182697"><img src="https://styleci.io/repos/70182697/shield?branch=0.2" alt="StyleCI"></a>
     <a href="https://packagist.org/packages/percymamedy/laravel-dev-booter"><img src="https://poser.pugx.org/percymamedy/laravel-dev-booter/license" alt="License"></a>
     <a href="https://packagist.org/packages/percymamedy/laravel-dev-booter"><img src="https://poser.pugx.org/percymamedy/laravel-dev-booter/downloads" alt="Total Downloads"></a>
-    <a href="https://insight.sensiolabs.com/projects/bc49ef2d-07ea-4bd0-bba0-607386b49004" alt="medal"><img src="https://insight.sensiolabs.com/projects/bc49ef2d-07ea-4bd0-bba0-607386b49004/mini.png"></a>
 </p>
 
 ## Introduction
