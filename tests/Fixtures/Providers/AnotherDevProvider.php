@@ -12,9 +12,7 @@ class AnotherDevProvider extends ServiceProvider
     /**
      * Boot Application Services.
      */
-    public function boot(): void
-    {
-    }
+    public function boot(): void {}
 
     /**
      * Register Application Services.

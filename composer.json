@@ -14,12 +14,13 @@
         }
     ],
     "require": {
-        "php": "^8.1|^8.2",
+        "php": "^8.2",
         "illuminate/support": "^11.0"
     },
     "require-dev": {
         "orchestra/testbench": "^9.0",
-        "phpunit/phpunit": "^10.0"
+        "phpunit/phpunit": "^10.0",
+        "laravel/pint": "^1.16"
     },
     "autoload": {
         "psr-4": {
@@ -31,9 +32,13 @@
             "PercyMamedy\\LaravelDevBooter\\Tests\\": "tests/"
         }
     },
+    "scripts": {
+        "lint": "vendor/bin/pint -v",
+        "test:lint": "vendor/bin/pint --test"
+    },
     "extra": {
         "branch-alias": {
-            "dev-master": "develop"
+            "dev-main": "develop"
         },
         "laravel": {
             "providers": [

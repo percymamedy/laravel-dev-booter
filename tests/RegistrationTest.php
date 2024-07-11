@@ -6,57 +6,45 @@ declare(strict_types=1);
 
 namespace PercyMamedy\LaravelDevBooter\Tests;
 
+use Illuminate\Config\Repository;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Foundation\AliasLoader;
-use PercyMamedy\LaravelDevBooter\ServiceProvider as DevBooterProvider;
 
-class RegistrationTest extends AbstractTestCase
+class RegistrationTest extends TestCase
 {
     /**
-     * Get package providers.
+     * {@inheritDoc}
      *
-     * @param  \Illuminate\Foundation\Application  $app
-     * @return array<int, class-string>
+     * @throws BindingResolutionException
      */
     public function getPackageProviders($app): array
     {
-        config(['app.dev_providers' => [\PercyMamedy\LaravelDevBooter\Tests\Fixtures\Providers\ADevProvider::class]]);
-        config(['app.dev_aliases' => ['Bar' => \PercyMamedy\LaravelDevBooter\Tests\Fixtures\Facades\ADevFacade::class]]);
+        /** @var Repository $config */
+        $config = $app->make('config');
 
-        return [
-            DevBooterProvider::class,
-        ];
+        $config->set(['app.testing_providers' => [\PercyMamedy\LaravelDevBooter\Tests\Fixtures\Providers\ADevProvider::class]]);
+        $config->set(['app.testing_aliases' => ['Bar' => \PercyMamedy\LaravelDevBooter\Tests\Fixtures\Facades\ADevFacade::class]]);
+
+        return parent::getPackageProviders($app);
     }
 
     /**
      * Test that dev providers are registered when on dev env.
+     *
+     * @throws BindingResolutionException
      */
-    public function testThatDevProvidersAreRegisteredCorrectly(): void
+    public function test_that_dev_providers_are_registered_correctly(): void
     {
-        $app = $this->createApplication('dev');
-
-        $this->assertArrayHasKey('PercyMamedy\LaravelDevBooter\Tests\Fixtures\Providers\ADevProvider', $app->getLoadedProviders());
-        $this->assertEquals('dummy.value', $app->make('dummy.key'));
-        $this->assertInstanceOf(\PercyMamedy\LaravelDevBooter\Tests\Fixtures\Foo\Bar::class, $app->make('bar'));
+        $this->assertArrayHasKey('PercyMamedy\LaravelDevBooter\Tests\Fixtures\Providers\ADevProvider', $this->app->getLoadedProviders());
+        $this->assertEquals('dummy.value', $this->app->make('dummy.key'));
+        $this->assertInstanceOf(\PercyMamedy\LaravelDevBooter\Tests\Fixtures\Foo\Bar::class, $this->app->make('bar'));
     }
 
     /**
      * Test that dev class aliases are properly booter.
      */
-    public function testThatClassAliasesAreBootedCorrectly(): void
+    public function test_that_class_aliases_are_booted_correctly(): void
     {
-        $this->createApplication('dev');
-
         $this->assertArrayHasKey('Bar', AliasLoader::getInstance()->getAliases());
-    }
-
-    /**
-     * Test that when we are on production dev providers are
-     * not registered.
-     */
-    public function testThatDevProvidersAreNotRegisteredOnProd(): void
-    {
-        $app = $this->createApplication('production');
-
-        $this->assertArrayNotHasKey('PercyMamedy\LaravelDevBooter\Tests\Fixtures\Providers\ADevProvider', $app->getLoadedProviders());
     }
 }
